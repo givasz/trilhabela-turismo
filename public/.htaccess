@@ -1,0 +1,39 @@
+# ── Trilhabela Turismo — hospedagem Apache (HostGator) ──
+
+# SPA: qualquer rota que não seja arquivo/pasta real cai no index.html
+# (necessário para as páginas /passeio/... funcionarem ao abrir/atualizar direto)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Compressão (gzip) — deixa o site mais leve/rápido
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# Cache do navegador — assets com hash e imagens ficam guardados 1 ano;
+# o index.html não é cacheado (sempre pega a versão nova)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp            "access plus 1 year"
+  ExpiresByType image/jpeg            "access plus 1 year"
+  ExpiresByType image/png             "access plus 1 year"
+  ExpiresByType image/svg+xml         "access plus 1 year"
+  ExpiresByType text/css              "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2            "access plus 1 year"
+  ExpiresByType application/pdf       "access plus 1 month"
+  ExpiresByType text/html             "access plus 0 seconds"
+</IfModule>
+
+# Tipo correto para WebP (caso o servidor não reconheça)
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>

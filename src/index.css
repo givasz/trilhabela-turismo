@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* canais RGB (permitem opacidade no Tailwind) — TEMA ESCURO (padrão) */
+  --c-ink: 10 14 20;
+  --c-navy: 17 35 63;
+  --c-sun: 255 196 0; /* amarelo vibrante: SEMPRE para FUNDOS (botões/marcadores) */
+  --c-accent: 255 196 0; /* cor de TEXTO de destaque (vira âmbar no claro) */
+  --c-gold: 201 162 39;
+  --c-sand: 244 235 214;
+  --c-jungle: 20 61 43;
+  --c-wa: 37 211 102;
+  /* fundo "global" da página — NÃO é sobrescrito por .force-dark,
+     usado por divisórias que precisam casar com a seção temática abaixo */
+  --page-ink: 10 14 20;
+}
+
+/* TEMA CLARO — corpo claro, acentos legíveis sobre claro */
+html.light {
+  --c-ink: 246 242 233; /* fundo da página (areia clara e quente) */
+  --c-navy: 255 255 255; /* superfícies / cards (branco) */
+  --c-sand: 22 35 58; /* texto (azul-marinho profundo, alto contraste) */
+  --c-accent: 146 96 0; /* âmbar escuro p/ TEXTOS de destaque (legível) */
+  --c-gold: 122 92 22; /* dourado escuro (bronze) p/ bordas e rótulos */
+  --c-jungle: 33 92 64; /* verde médio p/ tags de nível */
+  /* --c-sun permanece amarelo vibrante p/ fundos (botões continuam pop) */
+  --page-ink: 246 242 233;
+}
+
+/* Zonas que permanecem SEMPRE escuras (hero, header, footer) — visual premium */
+.force-dark {
+  --c-ink: 10 14 20;
+  --c-navy: 17 35 63;
+  --c-sun: 255 196 0;
+  --c-accent: 255 196 0;
+  --c-gold: 201 162 39;
+  --c-sand: 244 235 214;
+  --c-jungle: 20 61 43;
+}
+
+/* blend do rodapé da foto nos cards de passeio:
+   escuro = funde a foto no card (visual premium);
+   claro  = véu bem leve e curto, sem desbotar a parte de baixo da imagem */
+.card-img-fade {
+  background: linear-gradient(
+    to top,
+    rgb(var(--c-navy)) 0%,
+    rgb(var(--c-navy) / 0.18) 42%,
+    rgb(var(--c-navy) / 0) 70%
+  );
+}
+html.light .card-img-fade {
+  background: linear-gradient(
+    to top,
+    rgb(var(--c-navy) / 0.5) 0%,
+    rgb(var(--c-navy) / 0) 24%
+  );
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+body {
+  background-color: rgb(var(--c-ink));
+  color: rgb(var(--c-sand));
+  font-family: 'Sora', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* no tema claro, o grão fica escuro e mais sutil */
+html.light body::before {
+  opacity: 0.025;
+  filter: invert(1);
+}
+
+/* Grain overlay over the whole page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Focus visible — golden outline per spec */
+:focus-visible {
+  outline: 3px solid rgb(var(--c-gold));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply font-body text-xs font-600 uppercase tracking-[0.28em] text-accent;
+  }
+  .h-display {
+    @apply font-display uppercase leading-[0.92] tracking-tight text-sand;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-sm font-600 transition-all duration-300 min-h-[44px];
+  }
+  .btn-sun {
+    @apply btn bg-sun text-[#0a0e14] hover:brightness-110 hover:-translate-y-0.5;
+  }
+  .btn-wa {
+    @apply btn text-white;
+    background-color: rgb(var(--c-wa));
+  }
+  .btn-wa:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    @apply btn border border-gold/40 text-sand hover:border-gold hover:bg-gold/10;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 font-body text-xs font-500 transition-colors min-h-[36px];
+  }
+}
+
+/* Topographic faint lines behind section titles */
+.topo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(
+    ellipse 60% 80% at 50% 50%,
+    transparent 40%,
+    rgba(201, 162, 39, 0.06) 41%,
+    transparent 42%
+  ),
+  radial-gradient(
+    ellipse 45% 65% at 50% 50%,
+    transparent 55%,
+    rgba(201, 162, 39, 0.05) 56%,
+    transparent 57%
+  );
+}
+
+.polaroid {
+  background: #f4ebd6;
+  padding: 8px 8px 22px;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.8);
+}
+
+/* Utilitário acessível: visualmente escondido, ainda no DOM */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Google Tradutor — esconder a barra/balões do widget, manter o layout intacto */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+/* esconder o ícone "Google Tradutor" que às vezes aparece no topo */
+iframe.skiptranslate {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
