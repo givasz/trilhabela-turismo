@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/logo-green.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A0E14" />
+
+    <title>Trilhas e Passeios em Ilhabela | Trilhabela Turismo</title>
+    <meta name="description" content="Agência de ecoturismo com guia credenciado PEIB: trilhas, cachoeiras, passeios de barco, jeep 4x4, mergulho e observação de baleias em Ilhabela/SP." />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Trilhas e Passeios em Ilhabela | Trilhabela Turismo" />
+    <meta property="og:description" content="Trilhas guiadas, Travessia das 6 Praias, cachoeiras, barco, 4x4 e mergulho com guia credenciado PEIB. Reserve pelo WhatsApp." />
+    <meta property="og:image" content="/photos/hero-baepi.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/photos/hero-baepi.webp" fetchpriority="high" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Trilhabela Turismo",
+        "description": "Agência de ecoturismo em Ilhabela/SP: trilhas, travessias, passeios de barco, jeep 4x4, mergulho e observação de baleias com guia credenciado PEIB.",
+        "image": "/logo.webp",
+        "telephone": "+5512991226986",
+        "areaServed": "Ilhabela, São Paulo, Brasil",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ilhabela",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "sameAs": [
+          "https://www.instagram.com/trilhabela",
+          "https://www.facebook.com/trilhabela"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      // aplica o tema salvo antes da pintura (evita flash)
+      try {
+        if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light')
+      } catch (e) {}
+    </script>
+    <div id="root"></div>
+
+    <!-- Google Tradutor (tradução automática do site) -->
+    <div id="google_translate_element" class="sr-only" aria-hidden="true"></div>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'pt',
+            includedLanguages: 'ar,zh-CN,nl,en,fr,de,it,ru,es,pt',
+            autoDisplay: false,
+          },
+          'google_translate_element',
+        )
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
