@@ -36,7 +36,7 @@ export const tours = [
     duracao: '3 dias',
     nivel: 'Difícil',
     publico: 'Aventureiros experientes',
-    preco: { tipo: 'fixo', valor: 2000 },
+    preco: { tipo: 'fixo', valor: 1997 },
     roteiro: [
       {
         dia: 'Dia 1',
@@ -534,7 +534,7 @@ export const tours = [
     duracao: 'COM PERNOITE',
     nivel: 'Médio',
     publico: 'Requer preparo — nível médio de dificuldade',
-    preco: { tipo: 'fixo', valor: 1000 },
+    preco: { tipo: 'fixo', valor: 990 },
     inclusos: [
       '2 traslados de Jipe 4x4',
       'Hospedagem',
