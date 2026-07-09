@@ -36,7 +36,22 @@ export default function BookingWidget({ tour }) {
     if (!nome.trim()) e.nome = 'Informe seu nome.'
     if (telefone.replace(/\D/g, '').length < 10) e.telefone = 'Telefone incompleto.'
     setErrors(e)
-    return Object.keys(e).length === 0
+    return e
+  }
+
+  // Ordem e rótulos amigáveis dos campos, para o resumo e o scroll.
+  const FIELD_ORDER = ['data', 'pessoas', 'nome', 'telefone']
+  const FIELD_LABELS = { data: 'data', pessoas: 'nº de pessoas', nome: 'nome', telefone: 'telefone' }
+  const FIELD_TARGET = { data: 'bw-field-data', pessoas: 'bw-field-pessoas', nome: 'bw-nome', telefone: 'bw-telefone' }
+
+  // Leva o usuário até o primeiro campo que falta preencher.
+  const scrollToFirstError = (errs) => {
+    const first = FIELD_ORDER.find((k) => errs[k])
+    if (!first) return
+    const el = document.getElementById(FIELD_TARGET[first])
+    if (!el) return
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    if (first === 'nome' || first === 'telefone') el.focus?.({ preventScroll: true })
   }
 
   // URL do WhatsApp sempre pronta a partir do estado atual — permite usar um
@@ -54,8 +69,10 @@ export default function BookingWidget({ tour }) {
   )
 
   const onCta = (ev) => {
-    if (!validate()) {
+    const errs = validate()
+    if (Object.keys(errs).length) {
       ev.preventDefault()
+      scrollToFirstError(errs)
       return
     }
     setSubmitting(true)
@@ -91,7 +108,7 @@ export default function BookingWidget({ tour }) {
       </div>
 
       {/* data */}
-      <div className="mt-5">
+      <div id="bw-field-data" className="mt-5 scroll-mt-24">
         <p id="bw-data" className="mb-2 flex items-center gap-2 font-body text-sm font-600 text-sand">
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-gold/40 text-gold"><IconCalendar size={15} /></span>
           Escolha uma data de interesse
@@ -102,7 +119,7 @@ export default function BookingWidget({ tour }) {
       </div>
 
       {/* quantidade */}
-      <div className="mt-6">
+      <div id="bw-field-pessoas" className="mt-6 scroll-mt-24">
         <p className="mb-2 flex items-center gap-2 font-body text-sm font-600 text-sand">
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-gold/40 text-gold"><IconUsers size={15} /></span>
           Quantidade de pessoas
@@ -133,24 +150,39 @@ export default function BookingWidget({ tour }) {
           Informações do responsável
         </p>
         <input
-          type="text" value={nome} autoComplete="name" placeholder="Seu nome completo"
+          id="bw-nome" type="text" value={nome} autoComplete="name" placeholder="Seu nome completo"
           onChange={(e) => set(setNome, 'nome')(e.target.value)}
           aria-label="Nome completo" aria-invalid={!!errors.nome}
-          className={`w-full rounded-xl border bg-ink/60 px-4 py-3 font-body text-sand placeholder:text-sand/40 transition-colors focus:border-gold ${errors.nome ? 'border-red-400' : 'border-sand/20'}`}
+          className={`w-full scroll-mt-24 rounded-xl border bg-ink/60 px-4 py-3 font-body text-sand placeholder:text-sand/40 transition-colors focus:border-gold ${errors.nome ? 'border-red-400' : 'border-sand/20'}`}
         />
         {errors.nome && <p className="mt-1 font-body text-xs text-red-300">{errors.nome}</p>}
 
         <div className="mt-3 flex gap-2">
           <span className="inline-flex shrink-0 items-center rounded-xl border border-sand/20 bg-ink/60 px-3 font-body text-sm text-sand/70">+55</span>
           <input
-            type="tel" inputMode="numeric" value={telefone} autoComplete="tel" placeholder="(12) 99999-9999"
+            id="bw-telefone" type="tel" inputMode="numeric" value={telefone} autoComplete="tel" placeholder="(12) 99999-9999"
             onChange={(e) => set(setTelefone, 'telefone')(maskTelefone(e.target.value))}
             aria-label="Telefone com DDD" aria-invalid={!!errors.telefone}
-            className={`w-full rounded-xl border bg-ink/60 px-4 py-3 font-body text-sand placeholder:text-sand/40 transition-colors focus:border-gold ${errors.telefone ? 'border-red-400' : 'border-sand/20'}`}
+            className={`w-full scroll-mt-24 rounded-xl border bg-ink/60 px-4 py-3 font-body text-sand placeholder:text-sand/40 transition-colors focus:border-gold ${errors.telefone ? 'border-red-400' : 'border-sand/20'}`}
           />
         </div>
         {errors.telefone && <p className="mt-1 font-body text-xs text-red-300">{errors.telefone}</p>}
       </div>
+
+      {/* resumo do que falta — aparece junto do botão, bem visível */}
+      {(() => {
+        const faltando = FIELD_ORDER.filter((k) => errors[k])
+        if (!faltando.length) return null
+        return (
+          <div role="alert" aria-live="assertive" className="mt-6 flex items-start gap-2 rounded-xl border border-red-400/50 bg-red-500/10 px-4 py-3 font-body text-sm text-red-200">
+            <span aria-hidden="true" className="mt-px">⚠️</span>
+            <span>
+              <strong>Falta preencher:</strong> {faltando.map((k) => FIELD_LABELS[k]).join(', ')}.
+              <span className="block text-red-200/70">Complete os campos destacados para solicitar a reserva.</span>
+            </span>
+          </div>
+        )
+      })()}
 
       <a
         href={waUrl}
@@ -158,7 +190,7 @@ export default function BookingWidget({ tour }) {
         rel="noopener noreferrer"
         onClick={onCta}
         aria-disabled={submitting}
-        className="btn-wa mt-6 w-full text-base"
+        className={`btn-wa w-full text-base ${Object.keys(errors).some((k) => errors[k]) ? 'mt-3' : 'mt-6'}`}
       >
         <IconWhatsApp size={20} /> {submitting ? 'Abrindo WhatsApp…' : 'Solicitar reserva'}
       </a>
