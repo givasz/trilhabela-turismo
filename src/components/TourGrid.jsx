@@ -5,7 +5,7 @@ import TourCard from './TourCard.jsx'
 import { useReveal } from '../hooks/useReveal.js'
 
 // Âncoras de navegação (#hash) → categoria do filtro.
-const HASH_CAT = { trilhas: 'trilhas', experiencias: 'experiencia', tours: 'tour', passeios: 'passeios' }
+const HASH_CAT = { trilhas: 'trilhas', experiencias: 'experiencia', tours: 'tour', cachoeiras: 'cachoeiras', passeios: 'passeios' }
 
 export default function TourGrid() {
   const [cat, setCat] = useState('todos')
@@ -31,6 +31,7 @@ export default function TourGrid() {
       <span id="trilhas" aria-hidden="true" className="absolute -top-20" />
       <span id="experiencias" aria-hidden="true" className="absolute -top-20" />
       <span id="tours" aria-hidden="true" className="absolute -top-20" />
+      <span id="cachoeiras" aria-hidden="true" className="absolute -top-20" />
       <div className="topo" />
       <div className="container-x relative z-10">
         <header ref={ref} className={`mb-10 max-w-2xl ${shown ? 'animate-fade-up' : 'opacity-0'}`}>

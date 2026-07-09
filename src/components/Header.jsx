@@ -5,10 +5,12 @@ import { urlSimples } from '../utils/whatsapp.js'
 import ThemeToggle from './ThemeToggle.jsx'
 
 const LINKS = [
-  { to: '/#trilhas', label: 'Trilhas' },
   { to: '/#travessia', label: 'Travessia 6 Praias' },
-  { to: '/#passeios', label: 'Passeios' },
   { to: '/#experiencias', label: 'Experiências' },
+  { to: '/#trilhas', label: 'Trilhas' },
+  { to: '/#tours', label: 'Tours' },
+  { to: '/#cachoeiras', label: 'Cachoeiras' },
+  { to: '/#passeios', label: 'Passeios' },
 ]
 
 export default function Header() {
