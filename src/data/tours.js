@@ -5,10 +5,11 @@
 
 export const CATEGORIAS = [
   { key: 'todos', label: 'Todos' },
-  { key: 'trilhas', label: 'Trilhas Diversas' },
+  { key: 'experiencia', label: 'Experiências' },
+  { key: 'trilhas', label: 'Trilhas' },
   { key: 'tour', label: 'Tours' },
+  { key: 'cachoeiras', label: 'Cachoeiras' },
   { key: 'passeios', label: 'Passeios' },
-  { key: 'experiencia', label: 'Experiência' },
 ]
 
 // Um passeio pode aparecer em mais de um filtro: `categoria` é a principal
@@ -280,7 +281,7 @@ export const tours = [
     slug: 'circuito-cachoeiras-agua-branca',
     nome: 'Circuito das Cachoeiras',
     subtitulo: 'Água Branca, Cachoeira da Usina, Parque das Cachoeiras',
-    categoria: 'trilhas',
+    categoria: 'tour',
     descricao:
       'Visitamos os 5 atrativos naturais na cachoeira da Água Branca, com acesso pela Guarita do Parque Estadual. Na volta, visitamos a Cachoeira da Antiga Usina e também o Parque das Cachoeiras. Cerca de 4 km.',
     duracao: '4h a 5h',
@@ -299,7 +300,7 @@ export const tours = [
     slug: 'cachoeira-do-bananal',
     nome: 'Cachoeira do Bananal',
     subtitulo: 'Cachoeira do Quilombo',
-    categoria: 'trilhas',
+    categoria: 'cachoeiras',
     descricao:
       'Também conhecida como Cachoeira do Quilombo, esta cachoeira reserva belíssimas paisagens no interior da Mata Atlântica de Ilhabela. Na década de 70 era utilizada para escoar a produção de banana das fazendas, daí o seu nome. Ótima trilha para observar pássaros e outros animais, pois a presença de árvores frutíferas atrai diversas espécies. Cerca de 3 km.',
     duracao: '~5h',
@@ -316,7 +317,7 @@ export const tours = [
     id: 'cachoeira-couro-do-boi',
     slug: 'cachoeira-couro-do-boi',
     nome: 'Cachoeira Couro do Boi',
-    categoria: 'trilhas',
+    categoria: 'cachoeiras',
     descricao:
       'A Cachoeira do Couro do Boi tem uma linda queda d’água de 45 metros e é ótima para uma hidromassagem natural: as águas caem nos degraus e correm por uma rampa, relaxando o corpo e a mente. A trilha tem alguns pontos confusos, escorregadios e de mata fechada — por isso é necessária a contratação de guias credenciados, para maior segurança e conforto. Cerca de 3 km.',
     duracao: '~3h',
@@ -359,7 +360,7 @@ export const tours = [
     id: 'cachoeira-da-friagem',
     slug: 'cachoeira-da-friagem',
     nome: 'Cachoeira da Friagem',
-    categoria: 'trilhas',
+    categoria: 'cachoeiras',
     descricao:
       'Escondida na Mata Atlântica preservada, esta discreta cachoeira possui uma bela queda quase inteiramente reta. A água cai diretamente nas pedras, portanto é preciso atenção com o piso escorregadio. Cerca de 2 km.',
     duracao: '~3h',

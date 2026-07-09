@@ -15,9 +15,11 @@ import { urlSimples } from '../utils/whatsapp.js'
 import { CONTATO, REDES, LINKS_UTEIS } from '../data/links.js'
 
 const NAV = [
-  { to: '/#trilhas', label: 'Trilhas' },
   { to: '/#travessia', label: 'Travessia 6 Praias' },
   { to: '/#experiencias', label: 'Experiências' },
+  { to: '/#trilhas', label: 'Trilhas' },
+  { to: '/#tours', label: 'Tours' },
+  { to: '/#cachoeiras', label: 'Cachoeiras' },
   { to: '/#passeios', label: 'Passeios' },
   { to: '/#sobre', label: 'Sobre' },
   { to: '/#avaliacoes', label: 'Avaliações' },
