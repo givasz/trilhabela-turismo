@@ -97,7 +97,7 @@ export default function FeaturedTravessia() {
               </div>
 
               <div className="rounded-2xl border border-gold/30 bg-ink/60 p-4">
-                <p className="mb-3 font-body text-xs font-600 uppercase tracking-wider text-gold">Valor do guiamento por pessoa</p>
+                <p className="mb-3 font-body text-xs font-600 uppercase tracking-wider text-gold">Investimento por pessoa</p>
                 {t.preco.tipo === 'fixo' ? (
                   <>
                     <p className="flex items-baseline gap-2">
