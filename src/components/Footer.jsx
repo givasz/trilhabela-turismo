@@ -37,7 +37,8 @@ const REDES_LISTA = [
 const UTEIS_LISTA = [
   { href: LINKS_UTEIS.loja, label: 'Loja online (pague em até 10x)', Icon: IconShop },
   { href: LINKS_UTEIS.reservaParque, label: 'Reservar entrada no Parque Estadual', Icon: IconTicket },
-  { href: LINKS_UTEIS.termo, label: 'Termo de responsabilidade (PDF)', Icon: IconDownload },
+  { href: LINKS_UTEIS.termo, label: 'Termo de responsabilidade (PDF)', Icon: IconDownload, download: true },
+  { href: LINKS_UTEIS.fichaAnamnese, label: 'Ficha de anamnese (PDF)', Icon: IconDownload, download: true },
 ]
 
 export default function Footer() {
@@ -95,9 +96,9 @@ export default function Footer() {
           <div>
             <p className="mb-3 font-body text-sm font-600 uppercase tracking-wider text-gold">Links úteis</p>
             <ul className="space-y-3">
-              {UTEIS_LISTA.map(({ href, label, Icon }) => (
+              {UTEIS_LISTA.map(({ href, label, Icon, download }) => (
                 <li key={href}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-body text-sm text-sand/75 transition-colors hover:text-accent">
+                  <a href={href} target="_blank" rel="noopener noreferrer" {...(download ? { download: '' } : {})} className="inline-flex items-center gap-2 font-body text-sm text-sand/75 transition-colors hover:text-accent">
                     <Icon size={18} className="text-gold" /> {label}
                   </a>
                 </li>
