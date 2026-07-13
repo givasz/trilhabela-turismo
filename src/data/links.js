@@ -20,4 +20,5 @@ export const LINKS_UTEIS = {
   loja: 'https://loja.infinitepay.io/trilhabela',
   reservaParque: 'https://ilhabela.ingressosparquespaulistas.com.br/',
   termo: '/termo-de-responsabilidade.pdf',
+  fichaAnamnese: '/ficha-anamnese.pdf',
 }
