@@ -836,7 +836,7 @@ export const tours = [
     nivel: 'Fácil',
     publico: 'Todas as idades',
     horarios: 'Ponto de encontro a combinar com o guia pelo WhatsApp.',
-    preco: { tipo: 'fixo', valor: 200 },
+    preco: { tipo: 'fixo', valor: 250 },
     inclusos: [],
     naoInclusos: [],
     opcionais: [],
